@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pseudo Document</title>
+    <style>
+        h1:hover {
+            color: aqua;
+            background-color: grey;
+
+            font-weight: 700;
+        }
+
+        .middle-person:focus {
+            color: red;
+            font-weight: 700;
+        }
+
+        a:visited {
+            color: burlywood;
+        }
+
+        li:first-child {
+            color: blue;
+        }
+
+        li:last-child {
+            background-color: red;
+        }
+
+        li:nth-child(2n) {
+            color: cadetblue;
+        }
+
+        li:nth-child(2n+1) {
+            background-color: darkgoldenrod;
+        }
+
+        h3::before {
+            content: 'Hello ';
+        }
+
+        .special::after {
+            content: ' bye';
+            background-color: darkmagenta;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>This is normal</h1>
+    <input type="text">
+    <input class="middle-person" type="text">
+    <input type="text">
+    <br>
+    <a href="https://www.google.com/">google</a>
+    <a href="https://www.underconsideration.com/brandnew/">never visited</a>
+    <a href="https://web.programming-hero.com/">programming hero</a>
+    <br>
+    <h3>middle size header -1</h3>
+    <h3 class="special">middle size header -2</h3>
+    <h3>middle size header -3</h3>
+    <h3 class="special">middle size header -4</h3>
+    <h3 class="special">middle size header -5</h3>
+    <h3>middle size header -6</h3>
+    <ul>
+        <li>Alia</li>
+        <li>Dalia</li>
+        <li>Kalia</li>
+        <li>Calia</li>
+        <li>Jalai</li>
+        <li>Charaia</li>
+        <li>maria</li>
+        <li>faria</li>
+        <li>jaria</li>
+    </ul>
+
+</body>
+
+</html>
