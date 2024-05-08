@@ -1,70 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { addToDb, deleteShoppingCart, getStoredCart } from '../../utilities/fakedb';
-import Cart from '../Cart/Cart';
-import Product from '../Product/Product';
 import './Shop.css';
-
+import Product from '../Product/Product';
+import Cart from '../Cart/Cart';
+import { addToDb, deleteShoppingCart, getStoredCart } from '../../utilities/localdb';
+import { Link, useLoaderData } from 'react-router-dom';
 const Shop = () => {
     const products = useLoaderData();
+    // const [products, setProducts] = useState([]);
+    // useEffect(() => {
+    //     fetch('products.json')
+    //         .then(resp => resp.json())
+    //         .then(data => setProducts(data))
+    // }, [])
     const [cart, setCart] = useState([]);
-
-    const clearCart = () =>{
+    const clearCart = () => {
         setCart([]);
         deleteShoppingCart();
     }
-
-    useEffect( () =>{
+    useEffect(() => {
         const storedCart = getStoredCart();
         const savedCart = [];
-        for(const id in storedCart){
+        for (const id in storedCart) {
             const addedProduct = products.find(product => product.id === id);
-            if(addedProduct){
+            if (addedProduct) {
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity;
                 savedCart.push(addedProduct);
             }
+            setCart(savedCart);
         }
-        setCart(savedCart);
     }, [products])
-
-    const handleAddToCart = (selectedProduct) =>{
-        console.log(selectedProduct);
+    const handleAddToCart = (selectedProduct) => {
         let newCart = [];
         const exists = cart.find(product => product.id === selectedProduct.id);
-        if(!exists){
+        if (!exists) {
             selectedProduct.quantity = 1;
             newCart = [...cart, selectedProduct];
-        }
-        else{
+        } else {
             const rest = cart.filter(product => product.id !== selectedProduct.id);
             exists.quantity = exists.quantity + 1;
             newCart = [...rest, exists];
         }
-        
         setCart(newCart);
         addToDb(selectedProduct.id);
     }
-
     return (
         <div className='shop-container'>
-            <div className="products-container">
+            <div className='product-container'>
                 {
-                    products.map(product=><Product 
-                        key={product.id}
-                        product={product}
-                        handleAddToCart={handleAddToCart}
-                        ></Product>)
+                    products.map(product => <Product key={product.id} product={product} handleAddToCart={handleAddToCart}></Product>)
                 }
-            </div>
-            <div className="cart-container">
+            </div >
+            <div className='cart-container'>
                 <Cart clearCart={clearCart} cart={cart}>
-                    <Link to="/orders">
-                        <button>Review Order</button>
+                    <Link to="/orders" ><button>  View Cart Item</button>
                     </Link>
                 </Cart>
             </div>
-        </div>
+        </div >
     );
 };
 

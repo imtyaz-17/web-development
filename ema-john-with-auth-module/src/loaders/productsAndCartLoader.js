@@ -1,14 +1,13 @@
-import { getStoredCart } from "../utilities/fakedb";
+import { getStoredCart } from "../utilities/localdb";
 
 export const productsAndCartLoader = async () => {
-    // get Products
+    // Get Products
     const productsData = await fetch('products.json');
     const products = await productsData.json();
 
-    // get cart
+    // Get Cart
     const savedCart = getStoredCart();
     const initialCart = [];
-    
     for (const id in savedCart) {
         const addedProduct = products.find(product => product.id === id);
         if (addedProduct) {
@@ -18,5 +17,5 @@ export const productsAndCartLoader = async () => {
         }
     }
 
-    return { products: products, initialCart: initialCart };
+    return { products, initialCart };
 }
