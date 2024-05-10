@@ -1,0 +1,39 @@
+body {
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-image: linear-gradient(180deg, #c4b6fd, #93acfc);
+}
+
+.nav-link:hover {
+    color: #0a58ca;
+}
+
+.hero {
+    background: linear-gradient(0deg, #c4b6fd, #93acfc);
+}
+
+.card:hover {
+    background-color: #0a58ca;
+    color: #f2f2f2;
+}
+
+.ionicons {
+    color: #0a58ca;
+    background-color: #f2f2f2;
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+    margin-bottom: 12px;
+}
+
+footer {
+    background-color: #0a58ca !important;
+    border: none;
+    color: #fff !important;
+}
